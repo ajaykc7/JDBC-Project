@@ -1,62 +1,43 @@
-CREATE TABLE WritingGroup (
-                groupName VARCHAR(20) NOT NULL,
-                headWriter VARCHAR(20) NOT NULL,
-                yearFormed NOT NULL,
-                subject VARCHAR(30) NOT NULL,
+CCREATE TABLE WritingGroup (
+                groupName VARCHAR(40) NOT NULL,
+                headWriter VARCHAR(40) NOT NULL,
+                yearFormed varchar(4) NOT NULL,
+                subject VARCHAR(40) NOT NULL,
                 CONSTRAINT group_pk PRIMARY KEY(groupName));
 
 CREATE TABLE Publisher (
                 publisherName VARCHAR(40) NOT NULL,
                 publisherAddress VARCHAR(60) NOT NULL,
-                publisherPhone VARCHAR(15) NOT NULL,
+                publisherPhone VARCHAR(12) NOT NULL,
                 publisherEmail VARCHAR(30) NOT NULL,
                 CONSTRAINT publisher_pk PRIMARY KEY (publisherName));
 
 CREATE TABLE Book (
                 bookTitle VARCHAR(40) NOT NULL,
-                yearPublished NOT NULL,
+                yearPublished varchar(4) NOT NULL,
                 numberPages int NOT NULL,
-                groupName VARCHAR(20) NOT NULL,
+                groupName VARCHAR(40) NOT NULL,
                 publisherName VARCHAR(40) NOT NULL,
                 CONSTRAINT book_pk PRIMARY KEY (groupName, bookTitle),
                 CONSTRAINT book_publisher_fk FOREIGN KEY (publisherName) REFERENCES Publisher (publisherName),
                 CONSTRAINT book_group_fk FOREIGN KEY (groupName) REFERENCES WritingGroup (groupName));
 
 INSERT INTO WritingGroup(groupName, headWriter, yearFormed, subject) VALUES
-    ('PewDiePie','Felix Arvid Ulf Kjellberg','2009','Commentaries'),
-    ('Slack Variety Pack','Mike Antonio','2014','Lifehacks'),
-    ('Design Matters','Desiigner','2016','Creative Culture'),
-    ('Millenial','Mr. Baby Boomer','2005','Millenial Problems');
+    ('PEWDIEPIE','FELIX ARVID ULF KJELLBERG','2009','COMMENTARIES'),
+    ('SLACK VARIETY PACK','MIKE ANTONIO','2014','LIFEHACKS'),
+    ('DESIGN MATTERS','DESIIGNER','2016','CREATIVE MINDS'),
+    ('MILLENIAL','BABY BOOMERS','2005','MILLENIAL PROBLEMS');
 
 INSERT INTO Publisher(publisherName, publisherAddress, publisherPhone, publisherEmail) VALUES
-    ('Game Publication','Starks, The North','222-222-2222','stark@gmail.com'),
-    ('Aplus','Westoros','111-111-2111','cersei@gmail.com');
+    ('GAME PUBLICATION','STARTS, THE NORTH','222-222-2222','STARK@GMAIL.COM'),
+    ('APLUS','WESTOROS','111-111-2111','CERSEI@GMAIL.COM');
 
 INSERT INTO Book(groupName, bookTitle,publisherName, yearPublished,numberPages) VALUES
-    ('Millenial','Leave Millenials Alone','Game Publication','2010','1'),
-    ('Design Matters','How to get away with Murder','Game Publication','2016','50'),
-    ('Slack Variety Pack','Stop living from paycheck to paycheck','Aplus','2015','100'),
-    ('PewDiePie','Lets argue and listen','Aplus','2017','10000');
+    ('MILLENIAL','LEAVE MILLENIALS ALONE','GAME PUBLICATION','2010',1),
+    ('DESIGN MATTERS','HOW TO GET AWAY WITH MURDER','GAME PUBLICATION','2016',50),
+    ('SLACK VARIETY PACK','STOP LIVING FROM PAYCHECK TO PAYCHECK','APLUS','2015',100),
+    ('PEWDIEPIE','LETS ARGUE AND LISTEN','APLUS','2017',10000);
 
 
--- 1. List all writing groups
-SELECT * FROM WritingGroup;
-
---2. List all the data for a group specified by the user
-SELECT * FROM WritingGroup WHERE groupName='';
-
---3. List all publisher
-SELECT * FROM Publisher;
-
---4. List all the data for a publisher specified by the user
-SELECT * FROM Publisher WHERE publisherName='';
-
---5. List all the book title
-SELECT bookTitle FROM Book;
-
---6. List all the data for a book specified by the user
-SELECT * FROM Book NATURAL JOIN WritingGroup NATURAL JOIN Publisher WHERE bookTitle='';
-
---7. Insert a book
 
     
