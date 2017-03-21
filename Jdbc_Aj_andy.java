@@ -303,17 +303,44 @@ public class Jdbc_Aj_andy {
                                     pstmt.setString(4, email);//map value to pub email
                                     pstmt.executeUpdate();//execute prepared statements
 
-                                    System.out.println("Enter Publisher to replace: ");
-                                    String oPub = in.nextLine().toUpperCase();
+                                   // System.out.println("Enter Publisher to replace: ");
+                                   // String oPub = in.nextLine();
+                                    
+                                   boolean isBookValid = false;
+ 
+                                    while (!isBookValid) {
+                                        System.out.println("Enter name of publisher to update: ");
+                                        String oPub = in.nextLine().toUpperCase();
+                                        String sql6 = "Select * from Publisher where publisherName = ?";
+                                        PreparedStatement pstmt6 = null;
+                                        pstmt6 = conn.prepareStatement(sql6);
+                                        pstmt6.clearParameters();
+                                        pstmt6.setString(1, oPub);//map value to user input
+                                        ResultSet rs = pstmt6.executeQuery();
 
-                                    String sql2 = "Update Book Set publisherName = ? where publisherName = ?";
-                                    PreparedStatement pstmt2 = null;
-                                    pstmt2 = conn.prepareStatement(sql2);
-                                    pstmt2.setString(1, pName);//map value to publisher name
-                                    pstmt2.setString(2, oPub);//map value to publisher name
+                                        int count = 0; // variable to count the number of rows in the assigned query.
+                                        while (rs.next()) {
+                                            count++;
+                                        }
+                                        if (count == 0) {
+                                            System.out.println("\nThere is no publisher with that name.");
+                                        } else {
+                                            System.out.println("Here");
+                                            String sql2 = "Update Book Set publisherName = ? where publisherName = ?";
+                                            PreparedStatement pstmt2 = null;
+                                            pstmt2 = conn.prepareStatement(sql2);
+                                            pstmt2.setString(1, pName);//map value to publisher name
+                                            pstmt2.setString(2, oPub);//map value to publisher name
 
-                                    pstmt2.executeUpdate();//execute prepared statements
-                                    isPublicationValid = true;
+
+                                            pstmt2.executeUpdate();//execute prepared statements
+                                             isBookValid = true;
+
+                                        }
+                                     }
+                                            isPublicationValid = true;
+
+
                                 } catch (java.sql.SQLIntegrityConstraintViolationException sqle) {
                                     System.out.println("The publisher already exist. Please try again");
                                 }
