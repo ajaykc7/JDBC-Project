@@ -7,7 +7,7 @@ import java.util.Scanner;
 /**
  *
  * @author Mimi Opkins with some tweaking from Dave Brown Revised By Andy Sien
- * and Ajay KC
+ * and Ajay KC. I made changes here
  */
 public class Jdbc_Aj_andy {
 
