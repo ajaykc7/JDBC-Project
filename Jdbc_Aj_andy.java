@@ -7,7 +7,7 @@ import java.util.Scanner;
 /**
  *
  * @author Mimi Opkins with some tweaking from Dave Brown Revised By Andy Sien
- * and Ajay KC. I made changes here
+ * and Ajay KC. I made changes here dddd
  */
 public class Jdbc_Aj_andy {
 
@@ -305,9 +305,9 @@ public class Jdbc_Aj_andy {
 
                                    // System.out.println("Enter Publisher to replace: ");
                                    // String oPub = in.nextLine();
-                                    
+
                                    boolean isBookValid = false;
- 
+
                                     while (!isBookValid) {
                                         System.out.println("Enter name of publisher to update: ");
                                         String oPub = in.nextLine().toUpperCase();
